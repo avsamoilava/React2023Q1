@@ -2,12 +2,15 @@ import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import AppRouter from './router/AppRouter';
 import './App.css';
+import { Layout } from './components/layout/Layout';
 
 class App extends React.Component {
   render() {
     return (
       <BrowserRouter>
-        <AppRouter />
+        <Layout>
+          <AppRouter />
+        </Layout>
       </BrowserRouter>
     );
   }
