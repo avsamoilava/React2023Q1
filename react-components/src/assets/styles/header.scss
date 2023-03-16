@@ -1,0 +1,20 @@
+.header {
+  padding: 20px;
+  margin-bottom: 30px;
+
+  &__nav {
+
+  }
+}
+
+.header-nav {
+  &__list {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+  }
+  &__link {
+
+  }
+}
