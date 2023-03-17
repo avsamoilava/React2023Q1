@@ -14,11 +14,11 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react",
+    "jsx": "react-jsx",
     "noImplicitAny": true,
     "baseUrl": "./src",
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["./src/**/*", "styled.d.ts"],
+  "include": ["./src/**/*", "styled.d.ts", "setupTests.js"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
