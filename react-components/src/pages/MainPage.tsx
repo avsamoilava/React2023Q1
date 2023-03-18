@@ -1,7 +1,7 @@
 import { Search } from '../components/UI/Search';
 import React from 'react';
-import { products, Product } from '../data/data';
-import { Card } from '../components/Card';
+import { products } from '../data/data';
+import { CardList } from '../components/CardList';
 
 export class MainPage extends React.Component {
   render() {
@@ -11,11 +11,7 @@ export class MainPage extends React.Component {
           <Search />
         </div>
         <div className="main__catalog">
-          <div className="catalog">
-            {products.map((prod: Product) => (
-              <Card key={prod.id} product={prod} />
-            ))}
-          </div>
+          <CardList list={products} />
         </div>
       </div>
     );
