@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1679079187343" clover="3.2.0">
-  <project timestamp="1679079187343" name="All files">
+<coverage generated="1679131097403" clover="3.2.0">
+  <project timestamp="1679131097403" name="All files">
     <metrics statements="27" coveredstatements="27" conditionals="4" coveredconditionals="4" methods="4" coveredmethods="4" elements="35" coveredelements="35" complexity="0" loc="27" ncloc="27" packages="1" files="1" classes="1"/>
     <file name="Card.tsx" path="C:\Users\Sasha\Desktop\Sasha\IT-learn\React2023Q1\react-components\src\components\Card.tsx">
       <metrics statements="27" coveredstatements="27" conditionals="4" coveredconditionals="4" methods="4" coveredmethods="4"/>
