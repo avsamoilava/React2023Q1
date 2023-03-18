@@ -14,7 +14,7 @@ export class Card extends React.Component<CardProps> {
   }
   render() {
     return (
-      <div className="catalog__card card" key={this.product.id}>
+      <div className="catalog__card card" key={this.product.id} data-testid="card">
         <div className="card__img">
           <img src={this.product.image} alt={`${this.product.title} photo`} />
         </div>
