@@ -1,6 +1,6 @@
 .card {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 100%;
   flex: 1 0 22%;
   gap: 10px;
   border: 1px solid $input;
@@ -29,9 +29,11 @@
   }
   &__category {
     color: $input;
+    align-self: end;
 
   }
   &__price {
     font-size: 2rem;
+    align-self: end;
   }
 }
