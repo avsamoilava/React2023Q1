@@ -6,9 +6,9 @@ class AppRouter extends React.Component {
   render() {
     return (
       <Routes>
-        <Route path="/" element={<Pages.MainPage />}></Route>
-        <Route path="/about" element={<Pages.AboutPage />}></Route>
-        <Route path="*" element={<Pages.Page404 />}></Route>
+        <Route path="/" element={<Pages.MainPage title="Main Page" />}></Route>
+        <Route path="/about" element={<Pages.AboutPage title="About Page" />}></Route>
+        <Route path="*" element={<Pages.Page404 title="Not Found Page" />}></Route>
       </Routes>
     );
   }
