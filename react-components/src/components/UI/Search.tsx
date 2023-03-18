@@ -39,6 +39,7 @@ export class Search extends React.Component {
           defaultValue={this.state.value}
           placeholder="enter for search..."
           onChange={(e) => this.changeValue(e)}
+          role="search-input"
         />
       </form>
     );
