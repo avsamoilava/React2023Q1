@@ -1,0 +1,23 @@
+.header {
+  padding: 20px;
+  margin-bottom: 30px;
+  background: $accent;
+}
+
+.header-nav {
+  &__list {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+  }
+  &__link {
+    color: $dark;
+    padding: 10px;
+    text-decoration: none;
+    &.active {
+      border-bottom: 1px solid $dark;
+      font-weight: 600;
+    }
+  }
+}
