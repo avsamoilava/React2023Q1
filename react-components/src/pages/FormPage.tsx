@@ -35,11 +35,13 @@ export class FormPage extends React.Component<Props, State> {
   render() {
     return (
       <div className="form-page page">
-        <Form cb={this.addCard.bind(this)} />
-        <div className="form-page__cards">
-          {this.state.cards.map((card, index) => (
-            <FormResultCard key={card.name + index} card={card} />
-          ))}
+        <div className="_container">
+          <Form cb={this.addCard.bind(this)} />
+          <div className="form-page__cards cards-gallery">
+            {this.state.cards.map((card, index) => (
+              <FormResultCard key={card.name + index} card={card} />
+            ))}
+          </div>
         </div>
       </div>
     );

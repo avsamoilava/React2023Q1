@@ -58,31 +58,23 @@ export class Form extends React.Component<Props> {
         onSubmit={this.handlerForm.bind(this)}
         ref={this.generalRef}
       >
-        <label>
-          Name
-          <input type="text" name="userName" placeholder="enter your name" />
-        </label>
+        <input type="text" name="userName" placeholder="enter your name" />
 
         <select name="country">
-          <option value="">choose country</option>
+          <option value="">-- choose your country --</option>
           <option value="belarus">Belarus</option>
           <option value="germany">Germany</option>
           <option value="poland">Poland</option>
         </select>
 
-        <label>
-          Date
-          <input type="date" name="date" placeholder="enter your name" />
-        </label>
+        <input type="date" name="date" placeholder="enter your name" />
 
         <label>
-          Gender
           <input type="radio" name="gender" value="male" defaultChecked /> Male
           <input type="radio" name="gender" value="female" /> Female
         </label>
 
-        <label>
-          Upload some file
+        <label className="form__upload">
           <input type="file" name="image" ref={this.imgUploadRef} />
         </label>
 
