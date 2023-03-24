@@ -30,9 +30,9 @@ export class FormResultCard extends React.Component<Props> {
             <div className="form-card__gender">{this.card.gender}</div>
           </div>
           <div className="form-card__row">
-            <div className="form-card__agreement">{`The user ${
-              this.card.agreement ? 'agrees' : "doesn't agree"
-            }  to the processing of personal data`}</div>
+            <div className="form-card__agreement">
+              The user agrees to the processing of personal data
+            </div>
           </div>
         </div>
       </div>

@@ -25,7 +25,6 @@ export class FormPage extends React.Component<Props, State> {
 
   componentDidMount(): void {
     document.title = this.props.title;
-    console.log(this.state);
   }
 
   componentWillUnmount(): void {

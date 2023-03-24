@@ -1,17 +1,50 @@
 import React, { FormEvent } from 'react';
-import { FormCard } from '../../types';
+import { FormCard, FormErrors } from '../../types';
+import { nameValidate, dateValidate, createImage } from '../../utils';
 
 type Props = {
   cb: (card: FormCard) => void;
 };
 
+type State = {
+  errors: FormErrors;
+  success: string;
+};
+
 export class Form extends React.Component<Props> {
   generalRef = React.createRef<HTMLFormElement>();
   imgUploadRef = React.createRef<HTMLInputElement>();
-  messageRef = React.createRef<HTMLDivElement>();
+
+  state: State = {
+    errors: {
+      userName: '',
+      country: '',
+      date: '',
+      image: '',
+      agreement: '',
+    },
+    success: '',
+  };
 
   constructor(props: Props) {
     super(props);
+  }
+
+  async validate() {
+    const errors = {
+      userName: nameValidate(this.generalRef.current?.['userName'].value)
+        ? ''
+        : 'enter correct name',
+      country: this.generalRef.current?.['country'].value ? '' : 'choose country',
+      date: dateValidate(this.generalRef.current?.['date'].value) ? '' : 'enter correct date',
+      image: this.imgUploadRef.current?.value ? '' : 'upload some file',
+      agreement: this.generalRef.current?.['agreement'].checked
+        ? ''
+        : 'consent to the processing of information',
+    };
+    const isValid = Object.values(errors).every((elem) => !elem);
+    this.setState({ errors: errors, success: isValid ? 'Data processed successfully' : '' });
+    return isValid;
   }
 
   createCard(): FormCard {
@@ -19,7 +52,7 @@ export class Form extends React.Component<Props> {
       country: this.generalRef.current?.['country'].value,
       date: this.generalRef.current?.['date'].value,
       name: this.generalRef.current?.['userName'].value,
-      image: this.createImage(),
+      image: createImage(this.imgUploadRef),
       agreement: this.generalRef.current?.['agreement'].checked,
       gender: (
         Array.from(this.generalRef.current?.['gender']).find(
@@ -29,60 +62,57 @@ export class Form extends React.Component<Props> {
     };
   }
 
-  createImage() {
-    const input = this.imgUploadRef.current;
-    const file: File | null = input?.files ? input.files[0] : null;
-    return file ? URL.createObjectURL(file) : '';
-  }
-
-  showMessage(message: string) {
-    if (this.messageRef.current) {
-      this.messageRef.current.textContent = message;
-    }
-  }
-
-  handlerForm(e: FormEvent<HTMLFormElement>) {
+  async handlerSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    this.props.cb(this.createCard());
-    this.showMessage('Data processed successfully');
-    this.generalRef.current?.reset();
-    setTimeout(() => {
-      this.showMessage('');
-    }, 3000);
+    const isValid = await this.validate();
+    if (isValid) {
+      this.props.cb(this.createCard());
+      this.generalRef.current?.reset();
+      setTimeout(() => {
+        this.setState({ success: '' });
+      }, 3000);
+    }
   }
 
   render() {
     return (
       <form
         className="form-page__form form"
-        onSubmit={this.handlerForm.bind(this)}
+        onSubmit={this.handlerSubmit.bind(this)}
+        onChange={() => {
+          this.setState({
+            errors: { userName: '', country: '', date: '', image: '', agreement: '' },
+          });
+        }}
         ref={this.generalRef}
       >
         <input type="text" name="userName" placeholder="enter your name" />
-
+        <span className="form__error">{this.state.errors.userName}</span>
         <select name="country">
           <option value="">-- choose your country --</option>
           <option value="belarus">Belarus</option>
           <option value="germany">Germany</option>
           <option value="poland">Poland</option>
         </select>
-
+        <span className="form__error">{this.state.errors.country}</span>
         <input type="date" name="date" placeholder="enter your name" />
-
+        <span className="form__error">{this.state.errors.date}</span>
         <label>
-          <input type="radio" name="gender" value="male" defaultChecked /> Male
-          <input type="radio" name="gender" value="female" /> Female
+          <input type="radio" name="gender" defaultValue="male" defaultChecked /> Male
+          <input type="radio" name="gender" defaultValue="female" /> Female
         </label>
-
         <label className="form__upload">
           <input type="file" name="image" ref={this.imgUploadRef} />
         </label>
-
+        <span className="form__error">{this.state.errors.image}</span>
         <label>
           <input type="checkbox" name="agreement" /> I agree to the processing of information
         </label>
-        <div className="form__message" ref={this.messageRef}></div>
-        <button type="submit">Submit</button>
+        <span className="form__error">{this.state.errors.agreement}</span>
+        <div className="form__message">{this.state.success}</div>
+        <button className="form__btn" type="submit">
+          Submit
+        </button>
       </form>
     );
   }

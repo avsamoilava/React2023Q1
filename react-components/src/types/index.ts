@@ -10,3 +10,11 @@ export type FormCard = {
   image: string;
   agreement: boolean;
 };
+
+export type FormErrors = {
+  userName: string;
+  country: string;
+  date: string;
+  image: string;
+  agreement: string;
+};

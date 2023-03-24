@@ -56,6 +56,17 @@
     font-size: 1.2rem;
     font-weight: 600;
   }
+
+  &__error {
+    color: red;
+  }
+
+  &__btn {
+    &:disabled {
+      background: #444444;
+      cursor: pointer;
+    }
+  }
 }
 
 
