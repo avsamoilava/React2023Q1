@@ -53,7 +53,6 @@ export class Form extends React.Component<Props> {
       date: this.generalRef.current?.['date'].value,
       name: this.generalRef.current?.['userName'].value,
       image: createImage(this.imgUploadRef),
-      agreement: this.generalRef.current?.['agreement'].checked,
       gender: (
         Array.from(this.generalRef.current?.['gender']).find(
           (el) => (el as HTMLInputElement).checked
@@ -86,29 +85,36 @@ export class Form extends React.Component<Props> {
         }}
         ref={this.generalRef}
       >
-        <input type="text" name="userName" placeholder="enter your name" />
+        <input type="text" name="userName" placeholder="enter your name" role="name-input" />
         <span className="form__error">{this.state.errors.userName}</span>
-        <select name="country">
+
+        <select name="country" role="select">
           <option value="">-- choose your country --</option>
           <option value="belarus">Belarus</option>
           <option value="germany">Germany</option>
           <option value="poland">Poland</option>
         </select>
         <span className="form__error">{this.state.errors.country}</span>
-        <input type="date" name="date" placeholder="enter your name" />
+
+        <input type="date" name="date" placeholder="enter your name" role="date-input" />
         <span className="form__error">{this.state.errors.date}</span>
+
         <label>
           <input type="radio" name="gender" defaultValue="male" defaultChecked /> Male
           <input type="radio" name="gender" defaultValue="female" /> Female
         </label>
+
         <label className="form__upload">
           <input type="file" name="image" ref={this.imgUploadRef} />
         </label>
         <span className="form__error">{this.state.errors.image}</span>
+
         <label>
-          <input type="checkbox" name="agreement" /> I agree to the processing of information
+          <input type="checkbox" name="agreement" />
+          {'I agree to the processing of information'}
         </label>
         <span className="form__error">{this.state.errors.agreement}</span>
+
         <div className="form__message">{this.state.success}</div>
         <button className="form__btn" type="submit">
           Submit

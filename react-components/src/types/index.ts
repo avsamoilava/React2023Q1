@@ -8,7 +8,6 @@ export type FormCard = {
   country: string;
   gender: string;
   image: string;
-  agreement: boolean;
 };
 
 export type FormErrors = {
