@@ -34,7 +34,7 @@ export class Form extends React.Component<Props> {
     const errors = {
       userName: nameValidate(this.generalRef.current?.['userName'].value)
         ? ''
-        : 'enter correct name',
+        : 'enter correct name; first and last name must start with a capital letter and contain at least three characters',
       country: this.generalRef.current?.['country'].value ? '' : 'choose country',
       date: dateValidate(this.generalRef.current?.['date'].value) ? '' : 'enter correct date',
       image: this.imgUploadRef.current?.value ? '' : 'upload some file',
@@ -85,7 +85,12 @@ export class Form extends React.Component<Props> {
         }}
         ref={this.generalRef}
       >
-        <input type="text" name="userName" placeholder="enter your name" role="name-input" />
+        <input
+          type="text"
+          name="userName"
+          placeholder="enter your first-name and last-name"
+          role="name-input"
+        />
         <span className="form__error">{this.state.errors.userName}</span>
 
         <select name="country" role="select">
