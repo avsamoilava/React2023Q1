@@ -35,7 +35,7 @@ export class Search extends React.Component {
         </div>
         <input
           className="search__input"
-          type="text"
+          type="search"
           defaultValue={this.state.value}
           placeholder="enter for search..."
           onChange={(e) => this.changeValue(e)}

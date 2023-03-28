@@ -13,6 +13,9 @@ export class Header extends React.Component {
             <NavLink className="header-nav__link" to={'/about'}>
               About us
             </NavLink>
+            <NavLink className="header-nav__link" to={'/form'}>
+              Form
+            </NavLink>
           </ul>
         </nav>
       </header>

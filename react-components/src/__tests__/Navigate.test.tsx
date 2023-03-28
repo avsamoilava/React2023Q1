@@ -22,6 +22,15 @@ describe('Navigate test', () => {
     expect(screen.getByText('About us')).toBeInTheDocument();
   });
 
+  it('Header contains Form-link', async () => {
+    render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>
+    );
+    expect(screen.getByText('Form')).toBeInTheDocument();
+  });
+
   it('Go to page "About" when clicking on link "About us"', async () => {
     render(
       <MemoryRouter>
@@ -40,6 +49,16 @@ describe('Navigate test', () => {
     );
     userEvent.click(screen.getByText('Main'));
     expect(await screen.findByRole('search-input')).toBeInTheDocument();
+  });
+
+  it('Go to page "Form" when clicking on link "Form"', async () => {
+    render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>
+    );
+    userEvent.click(screen.getByText('Form'));
+    expect(await screen.findByText(/submit/i)).toBeInTheDocument();
   });
 
   it('landing on a bad page', () => {
