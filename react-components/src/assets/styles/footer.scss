@@ -1,0 +1,36 @@
+.footer {
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    padding: 10px;
+    background: $dark;
+    color: $light;
+  }
+
+  a {
+    transition: color 0.3s;
+  }
+  a:visited {
+    color: $light
+  }
+
+  a:hover {
+    color: $accent;
+    svg {
+      path[fill='currentColor'] {
+        fill: currentColor;
+      }
+    }
+  }
+
+  &__item {
+    &_git {
+      svg {
+        height: 40px;
+        width: 40px;
+      }
+    }
+  }
+}
