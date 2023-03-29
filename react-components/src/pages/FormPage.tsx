@@ -12,7 +12,7 @@ export const FormPage = (props: Props) => {
 
   useEffect(() => {
     document.title = props.title;
-  });
+  }, [props.title]);
 
   const addCard = (card: FormCard): void => {
     setCards([...cards, card]);

@@ -1,32 +1,22 @@
 import { Search } from '../components/UI/Search';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { products } from '../data/data';
 import { CardList } from '../components/CardList';
 import { PageProps } from '../types';
 
-export class MainPage extends React.Component<PageProps> {
-  constructor(props: PageProps) {
-    super(props);
-  }
+export const MainPage = (props: PageProps) => {
+  useEffect(() => {
+    document.title = props.title;
+  }, [props.title]);
 
-  render() {
-    return (
-      <div className="page main">
-        <div className="main__search">
-          <Search />
-        </div>
-        <div className="main__catalog">
-          <CardList list={products} />
-        </div>
+  return (
+    <div className="page main">
+      <div className="main__search">
+        <Search />
       </div>
-    );
-  }
-
-  componentDidMount(): void {
-    document.title = this.props.title;
-  }
-
-  componentWillUnmount(): void {
-    document.title = '';
-  }
-}
+      <div className="main__catalog">
+        <CardList list={products} />
+      </div>
+    </div>
+  );
+};
