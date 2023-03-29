@@ -1,10 +1,9 @@
 import React, { useEffect } from 'react';
-import { PageProps } from '../types';
 
-export const Page404 = (props: PageProps) => {
+export const Page404 = ({ title }: { title: string }) => {
   useEffect(() => {
-    document.title = props.title;
-  }, [props.title]);
+    document.title = title;
+  }, [title]);
 
   return (
     <div className="page page-404">

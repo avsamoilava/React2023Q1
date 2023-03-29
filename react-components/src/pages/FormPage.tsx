@@ -3,16 +3,12 @@ import React, { useEffect, useState } from 'react';
 import { FormCard } from '../types';
 import { FormResultCard } from '../components/Form/FormResultCard';
 
-type Props = {
-  title: string;
-};
-
-export const FormPage = (props: Props) => {
+export const FormPage = ({ title }: { title: string }) => {
   const [cards, setCards] = useState<FormCard[]>([]);
 
   useEffect(() => {
-    document.title = props.title;
-  }, [props.title]);
+    document.title = title;
+  }, [title]);
 
   const addCard = (card: FormCard): void => {
     setCards([...cards, card]);

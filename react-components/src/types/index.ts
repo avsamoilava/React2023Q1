@@ -1,7 +1,3 @@
-export type PageProps = {
-  title: string;
-};
-
 export type FormCard = {
   name: string;
   date: string;

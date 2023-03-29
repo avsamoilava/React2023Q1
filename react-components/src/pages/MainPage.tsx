@@ -2,12 +2,11 @@ import { Search } from '../components/UI/Search';
 import React, { useEffect } from 'react';
 import { products } from '../data/data';
 import { CardList } from '../components/CardList';
-import { PageProps } from '../types';
 
-export const MainPage = (props: PageProps) => {
+export const MainPage = ({ title }: { title: string }) => {
   useEffect(() => {
-    document.title = props.title;
-  }, [props.title]);
+    document.title = title;
+  }, [title]);
 
   return (
     <div className="page main">
