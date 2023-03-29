@@ -1,24 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { PageProps } from '../types';
 
-export class AboutPage extends React.Component<PageProps> {
-  constructor(props: PageProps) {
-    super(props);
-  }
+export const AboutPage = (props: PageProps) => {
+  useEffect(() => {
+    document.title = props.title;
+  }, [props.title]);
 
-  render() {
-    return (
-      <div className="page">
-        <h1>About page</h1>
-      </div>
-    );
-  }
-
-  componentDidMount(): void {
-    document.title = this.props.title;
-  }
-
-  componentWillUnmount(): void {
-    document.title = '';
-  }
-}
+  return (
+    <div className="page">
+      <h1>About page</h1>
+    </div>
+  );
+};
