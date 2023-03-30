@@ -1,7 +1,8 @@
 import { Form } from '../components/Form/Form';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FormCard } from '../types';
 import { FormResultCard } from '../components/Form/FormResultCard';
+import { v4 as uuidv4 } from 'uuid';
 
 export const FormPage = ({ title }: { title: string }) => {
   const [cards, setCards] = useState<FormCard[]>([]);
@@ -19,8 +20,8 @@ export const FormPage = ({ title }: { title: string }) => {
       <div className="_container">
         <Form cb={addCard} />
         <div className="form-page__cards cards-gallery">
-          {cards.map((card, index) => (
-            <FormResultCard key={card.name + index} card={card} />
+          {cards.map((card) => (
+            <FormResultCard key={uuidv4()} card={card} />
           ))}
         </div>
       </div>

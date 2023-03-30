@@ -1,9 +1,17 @@
+export enum Countries {
+  'belarus',
+  'germany',
+  'poland',
+  '',
+}
+
 export type FormCard = {
-  name: string;
+  userName: string;
   date: string;
-  country: string;
+  country: Countries;
   gender: string;
   image: string;
+  agreement: boolean;
 };
 
 export type FormErrors = {

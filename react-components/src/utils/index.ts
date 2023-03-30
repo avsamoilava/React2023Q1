@@ -1,5 +1,3 @@
-import { RefObject } from 'react';
-
 export const nameValidate = (value: string): boolean => {
   const parts = value.split(' ').map((part) => part.trim());
   return (
@@ -13,8 +11,6 @@ export const dateValidate = (value: string): boolean => {
   return !!value && +parts[0] >= 1900;
 };
 
-export const createImage = (ref: RefObject<HTMLInputElement>): string => {
-  const input = ref.current as HTMLInputElement;
-  const file: File | null = input?.files ? input.files[0] : null;
+export const createImage = (file: File): string => {
   return file ? URL.createObjectURL(file) : '';
 };

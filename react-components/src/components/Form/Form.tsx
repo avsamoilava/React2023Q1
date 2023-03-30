@@ -1,130 +1,112 @@
-import React, { FormEvent } from 'react';
-import { FormCard, FormErrors } from '../../types';
-import { nameValidate, dateValidate, createImage } from '../../utils';
+import React, { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { SubmitHandler } from 'react-hook-form/dist/types';
+import { Countries, FormCard } from '../../types';
+import { createImage } from '../../utils';
 
-type Props = {
-  cb: (card: FormCard) => void;
+type Fields = {
+  userName: string;
+  country: Countries;
+  date: string;
+  gender: string;
+  agreement: boolean;
+  image: FileList;
 };
 
-type State = {
-  errors: FormErrors;
-  success: string;
-};
+export const Form = ({ cb }: { cb: (card: FormCard) => void }) => {
+  const [isSuccess, setIsSuccess] = useState(false);
 
-export class Form extends React.Component<Props> {
-  generalRef = React.createRef<HTMLFormElement>();
-  imgUploadRef = React.createRef<HTMLInputElement>();
+  useEffect(() => {
+    if (isSuccess) {
+      setTimeout(() => {
+        setIsSuccess(false);
+      }, 2000);
+    }
+  }, [isSuccess]);
 
-  state: State = {
-    errors: {
-      userName: '',
-      country: '',
-      date: '',
-      image: '',
-      agreement: '',
-    },
-    success: '',
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<Fields>({
+    mode: 'onSubmit',
+    reValidateMode: 'onSubmit',
+  });
+
+  const onSubmit: SubmitHandler<Fields> = (data) => {
+    const card: FormCard = { ...data, image: createImage(data.image[0]) };
+    cb(card);
+    setIsSuccess(true);
+    reset();
   };
 
-  constructor(props: Props) {
-    super(props);
-  }
+  const handleChange = () => {
+    setIsSuccess(false);
+  };
 
-  async validate() {
-    const errors = {
-      userName: nameValidate(this.generalRef.current?.['userName'].value)
-        ? ''
-        : 'enter correct name; first and last name must start with a capital letter and contain at least three characters',
-      country: this.generalRef.current?.['country'].value ? '' : 'choose country',
-      date: dateValidate(this.generalRef.current?.['date'].value) ? '' : 'enter correct date',
-      image: this.imgUploadRef.current?.value ? '' : 'upload some file',
-      agreement: this.generalRef.current?.['agreement'].checked
-        ? ''
-        : 'consent to the processing of information',
-    };
-    const isValid = Object.values(errors).every((elem) => !elem);
-    this.setState({ errors: errors, success: isValid ? 'Data processed successfully' : '' });
-    return isValid;
-  }
+  return (
+    <form
+      className="form-page__form form"
+      onSubmit={handleSubmit(onSubmit)}
+      onChange={handleChange}
+    >
+      <input
+        type="text"
+        placeholder="enter your first-name and last-name as 'Name Lastname'"
+        role="name-input"
+        {...register('userName', { required: true, pattern: /^[A-Z][a-z]{2,}\s[A-Z][a-z]{2,}$/ })}
+      />
+      {errors.userName && (
+        <span className="form__error">
+          enter correct name; first and last name must start with a capital letter and contain at
+          least three characters
+        </span>
+      )}
 
-  createCard(): FormCard {
-    return {
-      country: this.generalRef.current?.['country'].value,
-      date: this.generalRef.current?.['date'].value,
-      name: this.generalRef.current?.['userName'].value,
-      image: createImage(this.imgUploadRef),
-      gender: (
-        Array.from(this.generalRef.current?.['gender']).find(
-          (el) => (el as HTMLInputElement).checked
-        ) as HTMLInputElement
-      ).value,
-    };
-  }
-
-  async handlerSubmit(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    const isValid = await this.validate();
-    if (isValid) {
-      this.props.cb(this.createCard());
-      this.generalRef.current?.reset();
-      setTimeout(() => {
-        this.setState({ success: '' });
-      }, 3000);
-    }
-  }
-
-  render() {
-    return (
-      <form
-        className="form-page__form form"
-        onSubmit={this.handlerSubmit.bind(this)}
-        onChange={() => {
-          this.setState({
-            errors: { userName: '', country: '', date: '', image: '', agreement: '' },
-          });
-        }}
-        ref={this.generalRef}
+      <select
+        role="select"
+        defaultValue=""
+        {...register('country', { required: true, pattern: /^.+$/ })}
       >
-        <input
-          type="text"
-          name="userName"
-          placeholder="enter your first-name and last-name"
-          role="name-input"
-        />
-        <span className="form__error">{this.state.errors.userName}</span>
+        <option value="">-- choose your country --</option>
+        <option value="belarus">Belarus</option>
+        <option value="germany">Germany</option>
+        <option value="poland">Poland</option>
+      </select>
+      {errors.country && <span className="form__error">choose country</span>}
 
-        <select name="country" role="select">
-          <option value="">-- choose your country --</option>
-          <option value="belarus">Belarus</option>
-          <option value="germany">Germany</option>
-          <option value="poland">Poland</option>
-        </select>
-        <span className="form__error">{this.state.errors.country}</span>
+      <input
+        type="date"
+        placeholder="enter your name"
+        role="date-input"
+        {...register('date', { required: true })}
+      />
+      {errors.date && <span className="form__error">enter correct date</span>}
 
-        <input type="date" name="date" placeholder="enter your name" role="date-input" />
-        <span className="form__error">{this.state.errors.date}</span>
+      <div className="form__radio-group">
+        <input type="radio" {...register('gender', { required: true })} value="male" /> Male
+        <input type="radio" {...register('gender', { required: true })} value="female" /> Female
+      </div>
+      {errors.gender && <span className="form__error">choose gender</span>}
 
-        <label>
-          <input type="radio" name="gender" defaultValue="male" defaultChecked /> Male
-          <input type="radio" name="gender" defaultValue="female" /> Female
-        </label>
+      <label className="form__upload">
+        <input type="file" defaultValue="" {...register('image', { required: true })} />
+      </label>
+      {errors.image && <span className="form__error">upload some image file</span>}
 
-        <label className="form__upload">
-          <input type="file" name="image" ref={this.imgUploadRef} />
-        </label>
-        <span className="form__error">{this.state.errors.image}</span>
+      <label>
+        <input type="checkbox" defaultValue="" {...register('agreement', { required: true })} />
+        {'I agree to the processing of information'}
+      </label>
+      {errors.agreement && (
+        <span className="form__error">consent to the processing of information</span>
+      )}
 
-        <label>
-          <input type="checkbox" name="agreement" />
-          {'I agree to the processing of information'}
-        </label>
-        <span className="form__error">{this.state.errors.agreement}</span>
-
-        <div className="form__message">{this.state.success}</div>
-        <button className="form__btn" type="submit">
-          Submit
-        </button>
-      </form>
-    );
-  }
-}
+      {isSuccess && <div className="form__message">Data processed successfully</div>}
+      <button className="form__btn" type="submit">
+        Submit
+      </button>
+    </form>
+  );
+};
