@@ -1,23 +1,12 @@
-export enum Countries {
-  'belarus',
-  'germany',
-  'poland',
-  '',
-}
-
-export type FormCard = {
-  userName: string;
-  date: string;
-  country: Countries;
-  gender: string;
-  image: string;
-  agreement: boolean;
-};
-
-export type FormErrors = {
+export type Fields = {
   userName: string;
   country: string;
   date: string;
+  gender: string;
+  agreement: boolean;
+  images: FileList;
+};
+
+export type FormCard = Partial<Fields> & {
   image: string;
-  agreement: string;
 };

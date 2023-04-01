@@ -1,17 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { SubmitHandler } from 'react-hook-form/dist/types';
-import { Countries, FormCard } from '../../types';
+import { FormCard, Fields } from '../../types';
 import { createImage } from '../../utils';
-
-type Fields = {
-  userName: string;
-  country: Countries;
-  date: string;
-  gender: string;
-  agreement: boolean;
-  image: FileList;
-};
 
 export const Form = ({ cb }: { cb: (card: FormCard) => void }) => {
   const [isSuccess, setIsSuccess] = useState(false);
@@ -35,7 +26,7 @@ export const Form = ({ cb }: { cb: (card: FormCard) => void }) => {
   });
 
   const onSubmit: SubmitHandler<Fields> = (data) => {
-    const card: FormCard = { ...data, image: createImage(data.image[0]) };
+    const card: FormCard = { ...data, image: createImage(data.images[0]) };
     cb(card);
     setIsSuccess(true);
     reset();
@@ -91,9 +82,9 @@ export const Form = ({ cb }: { cb: (card: FormCard) => void }) => {
       {errors.gender && <span className="form__error">choose gender</span>}
 
       <label className="form__upload">
-        <input type="file" defaultValue="" {...register('image', { required: true })} />
+        <input type="file" defaultValue="" {...register('images', { required: true })} />
       </label>
-      {errors.image && <span className="form__error">upload some image file</span>}
+      {errors.images && <span className="form__error">upload some image file</span>}
 
       <label>
         <input type="checkbox" defaultValue="" {...register('agreement', { required: true })} />
