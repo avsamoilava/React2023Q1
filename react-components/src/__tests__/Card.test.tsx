@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { Product } from 'data/data';
-import { Card } from '../components/Card';
+import { Card } from '../components/Card/Card';
 
 const fakeProduct: Product = {
   id: 1,

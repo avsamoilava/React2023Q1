@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card } from './Card';
-import { Char } from '../types';
+import { Char } from '../../types';
 
 export const CardList = ({ chars }: { chars: Char[] }) => {
   return (

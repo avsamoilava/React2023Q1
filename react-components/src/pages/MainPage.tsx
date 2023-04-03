@@ -1,6 +1,6 @@
 import { Search } from '../components/UI/Search';
 import React, { useEffect, useState } from 'react';
-import { CardList } from '../components/CardList';
+import { CardList } from '../components/Card/CardList';
 import { CharsApi } from '../API/charsApi';
 
 export const MainPage = ({ title }: { title: string }) => {
