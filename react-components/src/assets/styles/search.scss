@@ -1,0 +1,25 @@
+.search {
+  display: flex;
+  gap: 15px;
+  border: 1px solid $input;
+  border-radius: 7px;
+  padding: 12px;
+  max-width: 500px;
+  margin: 0 auto;
+
+  &__icon {
+    cursor: pointer;
+    svg {
+      fill: $input;
+      transition: fill 0.3s;
+      &:hover {
+        fill: $dark;
+      }
+    }
+  }
+
+  &__input {
+    outline: none;
+    border: none;
+  }
+}
