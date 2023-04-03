@@ -7,10 +7,6 @@
   border-radius: 10px;
   padding: 10px;
 
-  &__title {
-    font-size: 1.1rem;
-    font-weight: 600;
-  }
   &__img {
     width: 100%;
     min-width: 250px;
@@ -24,16 +20,18 @@
     }
 
   }
-  &__description {
+  &__row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    span {
+      font-weight: bold;
+    }
 
-  }
-  &__category {
-    color: $input;
-    align-self: end;
-
-  }
-  &__price {
-    font-size: 2rem;
-    align-self: end;
+    &:not(:last-child) {
+      padding-bottom: 5px;
+      border-bottom: 1px solid #000;
+    }
+    
   }
 }

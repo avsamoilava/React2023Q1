@@ -1,12 +1,12 @@
 import React from 'react';
 import { Card } from './Card';
-import { Product } from '../data/data';
+import { Char } from '../types';
 
-export const CardList = ({ list }: { list: Product[] }) => {
+export const CardList = ({ chars }: { chars: Char[] }) => {
   return (
     <div className="catalog">
-      {list.map((prod: Product) => (
-        <Card key={prod.id} product={prod} />
+      {chars.map((char: Char) => (
+        <Card key={char.id} char={char} />
       ))}
     </div>
   );
