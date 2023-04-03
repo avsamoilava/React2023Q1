@@ -1,14 +1,19 @@
 import { SearchIcon } from '../icons/SearchIcon';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 export const Search = () => {
   const [searchValue, setSearchValue] = useState(localStorage.getItem('searchValue') || '');
+  const temp = useRef<string>();
+
+  useEffect(() => {
+    temp.current = searchValue;
+  }, [searchValue]);
 
   useEffect(() => {
     return () => {
-      localStorage.setItem('searchValue', searchValue);
+      localStorage.setItem('searchValue', temp.current || '');
     };
-  }, [searchValue]);
+  }, []);
 
   const changeValue = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(event.currentTarget.value);
