@@ -3,7 +3,7 @@ import { Char } from '../../types';
 import { CardModal } from './CardModal';
 
 export const Card = ({ char }: { char: Char }) => {
-  const [modalShow, setModalShow] = useState(false);
+  const [isModalShow, setIsModalShow] = useState(false);
 
   return (
     <React.Fragment>
@@ -11,7 +11,7 @@ export const Card = ({ char }: { char: Char }) => {
         className="catalog__card card"
         key={char.id}
         data-testid="card"
-        onClick={() => setModalShow(true)}
+        onClick={() => setIsModalShow(true)}
       >
         <div className="card__img">
           <img src={char.image} alt="char photo" />
@@ -20,7 +20,7 @@ export const Card = ({ char }: { char: Char }) => {
           <span>{char.name}</span>
         </div>
       </div>
-      {modalShow && <CardModal char={char} cb={() => setModalShow(false)} />}
+      {isModalShow && <CardModal char={char} cb={() => setIsModalShow(false)} />}
     </React.Fragment>
   );
 };
