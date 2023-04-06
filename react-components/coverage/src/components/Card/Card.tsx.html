@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for src/components/layout/Header.tsx</title>
+    <title>Code coverage report for src/components/Card/Card.tsx</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../../prettify.css" />
     <link rel="stylesheet" href="../../../base.css" />
@@ -19,34 +19,34 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../../index.html">All files</a> / <a href="index.html">src/components/layout</a> Header.tsx</h1>
+        <h1><a href="../../../index.html">All files</a> / <a href="index.html">src/components/Card</a> Card.tsx</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>22/22</span>
+                <span class='fraction'>26/26</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">66.66% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>2/2</span>
+                <span class='fraction'>2/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>2/2</span>
+                <span class='fraction'>2/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>22/22</span>
+                <span class='fraction'>26/26</span>
             </div>
         
             
@@ -85,10 +85,15 @@
 <a name='L20'></a><a href='#L20'>20</a>
 <a name='L21'></a><a href='#L21'>21</a>
 <a name='L22'></a><a href='#L22'>22</a>
-<a name='L23'></a><a href='#L23'>23</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L23'></a><a href='#L23'>23</a>
+<a name='L24'></a><a href='#L24'>24</a>
+<a name='L25'></a><a href='#L25'>25</a>
+<a name='L26'></a><a href='#L26'>26</a>
+<a name='L27'></a><a href='#L27'>27</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-yes">7x</span>
@@ -107,26 +112,33 @@
 <span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from 'react';
-import { NavLink } from 'react-router-dom';
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { useState } from 'react';
+import { Char } from '../../types';
+import { CardModal } from './CardModal';
 &nbsp;
-export const Header = () =&gt; {
+export const Card = ({ char }: { char: Char }) =&gt; {
+  const [isModalShow, setIsModalShow] = useState(false);
+&nbsp;
   return (
-    &lt;header className="header"&gt;
-      &lt;nav className="header__nav header-nav"&gt;
-        &lt;ul className="header-nav__list"&gt;
-          &lt;NavLink className="header-nav__link" to={'/'}&gt;
-            Main
-          &lt;/NavLink&gt;
-          &lt;NavLink className="header-nav__link" to={'/about'}&gt;
-            About us
-          &lt;/NavLink&gt;
-          &lt;NavLink className="header-nav__link" to={'/form'}&gt;
-            Form
-          &lt;/NavLink&gt;
-        &lt;/ul&gt;
-      &lt;/nav&gt;
-    &lt;/header&gt;
+    &lt;React.Fragment&gt;
+      &lt;div
+        className="catalog__card card"
+        key={char.id}
+        data-testid="card"
+        onClick={<span class="fstat-no" title="function not covered" >() =&gt; setIsModalShow(true)}</span>
+      &gt;
+        &lt;div className="card__img"&gt;
+          &lt;img src={char.image} alt="char photo" /&gt;
+        &lt;/div&gt;
+        &lt;div className="card__row"&gt;
+          &lt;span&gt;{char.name}&lt;/span&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      {<span class="branch-0 cbranch-no" title="branch not covered" >isModalShow &amp;&amp; &lt;CardModal char={char} cb={<span class="fstat-no" title="function not covered" >() =&gt; setIsModalShow(false)} /</span>&gt;}</span>
+    &lt;/React.Fragment&gt;
   );
 };
 &nbsp;</pre></td></tr></table></pre>

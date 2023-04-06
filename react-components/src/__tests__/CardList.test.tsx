@@ -1,16 +1,16 @@
 import { render, screen } from '@testing-library/react';
-import { CardList } from '../components/CardList';
-import { products } from '../data/data';
+import { CardList } from '../components/Card/CardList';
+import { fakeCharList } from './mockData';
 
 describe('CardList component', () => {
   it('should be render all cards', () => {
-    render(<CardList list={products} />);
-    expect(screen.getAllByTestId('card').length).toBe(products.length);
+    render(<CardList chars={fakeCharList} />);
+    expect(screen.getAllByTestId('card').length).toBe(fakeCharList.length);
   });
 
   it('all cards have img', () => {
-    render(<CardList list={products} />);
+    render(<CardList chars={fakeCharList} />);
     const images = screen.getAllByRole('img').map((img) => img.getAttribute('src'));
-    expect(products.map((product) => product.image)).toEqual(images);
+    expect(fakeCharList.map((char) => char.image)).toEqual(images);
   });
 });
