@@ -4,6 +4,7 @@ import { CardModal } from './CardModal';
 
 export const Card = ({ char }: { char: Char }) => {
   const [isModalShow, setIsModalShow] = useState(false);
+  const closeModal = () => setIsModalShow(false);
 
   return (
     <React.Fragment>
@@ -20,7 +21,7 @@ export const Card = ({ char }: { char: Char }) => {
           <span>{char.name}</span>
         </div>
       </div>
-      {isModalShow && <CardModal char={char} cb={() => setIsModalShow(false)} />}
+      {isModalShow && <CardModal char={char} cb={closeModal} />}
     </React.Fragment>
   );
 };

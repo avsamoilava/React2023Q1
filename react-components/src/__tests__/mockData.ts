@@ -77,7 +77,7 @@ export const fakeChar = {
   name: 'Summer Sanchez',
   status: 'Dead',
   species: 'Human',
-  type: 'type',
+  type: 'Test is working',
   gender: 'Female',
   origin: {
     name: '',

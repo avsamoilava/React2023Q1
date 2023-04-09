@@ -4,8 +4,8 @@ import { CloseIcon } from '../icons';
 
 export const CardModal = ({ char, cb }: { char: Char; cb: () => void }) => {
   return (
-    <div className="modal-card" onClick={cb}>
-      <div className="card" onClick={(e) => e.stopPropagation()}>
+    <div className="modal-card" onClick={cb} data-testid="modal-overlay">
+      <div className="card" onClick={(e) => e.stopPropagation()} data-testid="modal-content">
         <div className="card__img">
           <img src={char.image} alt="char photo" />
         </div>
@@ -30,7 +30,7 @@ export const CardModal = ({ char, cb }: { char: Char; cb: () => void }) => {
           <span>Species</span>
           {char.species}
         </div>
-        <div className="card__close" onClick={cb}>
+        <div className="card__close" onClick={cb} data-testid="close-btn">
           <CloseIcon />
         </div>
       </div>
