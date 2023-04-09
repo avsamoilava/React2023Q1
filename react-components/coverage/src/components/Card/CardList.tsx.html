@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for src/components/layout/Layout.tsx</title>
+    <title>Code coverage report for src/components/Card/CardList.tsx</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../../prettify.css" />
     <link rel="stylesheet" href="../../../base.css" />
@@ -19,7 +19,7 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../../index.html">All files</a> / <a href="index.html">src/components/layout</a> Layout.tsx</h1>
+        <h1><a href="../../../index.html">All files</a> / <a href="index.html">src/components/Card</a> CardList.tsx</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
@@ -32,7 +32,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>2/2</span>
+                <span class='fraction'>3/3</span>
             </div>
         
             
@@ -81,25 +81,25 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">14x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from 'react';
-import { Footer } from './Footer';
-import { Header } from './Header';
+import { Card } from './Card';
+import { Char } from '../../types';
 &nbsp;
-export const Layout = ({ children }: { children: React.ReactNode }) =&gt; {
+export const CardList = ({ chars }: { chars: Char[] }) =&gt; {
   return (
-    &lt;&gt;
-      &lt;Header /&gt;
-      {children}
-      &lt;Footer /&gt;
-    &lt;/&gt;
+    &lt;div className="catalog"&gt;
+      {chars.map((char: Char) =&gt; (
+        &lt;Card key={char.id} char={char} /&gt;
+      ))}
+    &lt;/div&gt;
   );
 };
 &nbsp;</pre></td></tr></table></pre>
