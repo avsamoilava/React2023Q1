@@ -9,12 +9,6 @@ export const Search = ({ cb }: { cb: (param: string) => void }) => {
     temp.current = searchValue;
   }, [searchValue]);
 
-  useEffect(() => {
-    return () => {
-      localStorage.setItem('searchValue', temp.current || '');
-    };
-  }, []);
-
   const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(event.currentTarget.value);
   };
@@ -22,6 +16,7 @@ export const Search = ({ cb }: { cb: (param: string) => void }) => {
   const submitHandler = (event: React.FormEvent) => {
     event.preventDefault();
     cb(temp.current || '');
+    localStorage.setItem('searchValue', temp.current || '');
   };
 
   return (
