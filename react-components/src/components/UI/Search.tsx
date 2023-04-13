@@ -1,13 +1,14 @@
+import { useAppDispatch, useAppSelector } from '../../hooks';
 import { SearchIcon } from '../icons/SearchIcon';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
+import { setString } from '../../store/searchSlice';
 
-export const Search = ({ cb }: { cb: (param: string) => void }) => {
-  const [searchValue, setSearchValue] = useState(localStorage.getItem('searchValue') || '');
-  const temp = useRef<string>();
+export const Search = () => {
+  const { value } = useAppSelector((state) => state.search);
+  const [searchValue, setSearchValue] = useState(value);
 
-  useEffect(() => {
-    temp.current = searchValue;
-  }, [searchValue]);
+  const dispatch = useAppDispatch();
+  console.log(value);
 
   const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(event.currentTarget.value);
@@ -15,8 +16,7 @@ export const Search = ({ cb }: { cb: (param: string) => void }) => {
 
   const submitHandler = (event: React.FormEvent) => {
     event.preventDefault();
-    cb(temp.current || '');
-    localStorage.setItem('searchValue', temp.current || '');
+    dispatch(setString(searchValue));
   };
 
   return (
@@ -27,7 +27,7 @@ export const Search = ({ cb }: { cb: (param: string) => void }) => {
       <input
         className="search__input"
         type="search"
-        defaultValue={searchValue}
+        defaultValue={value}
         placeholder="let's start enter name for search..."
         onChange={changeHandler}
         role="search-input"
