@@ -1,15 +1,15 @@
-export type Fields = {
+export interface Fields {
   userName: string;
   country: string;
   date: string;
   gender: string;
   agreement: boolean;
   images: FileList;
-};
+}
 
-export type FormCard = Partial<Fields> & {
+export interface FormCard extends Omit<Fields, 'images'> {
   image: string;
-};
+}
 
 export type Char = {
   id: number;

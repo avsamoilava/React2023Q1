@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { CardList } from '../components/Card/CardList';
 import { CharsApi } from '../API/charsApi';
 import { Loader } from '../components/UI/Loader';
+import { useAppSelector } from '../hooks';
 
 export const MainPage = ({ title }: { title: string }) => {
   const [chars, setChars] = useState([]);
@@ -30,7 +31,7 @@ export const MainPage = ({ title }: { title: string }) => {
   return (
     <div className="page main">
       <div className="main__search">
-        <Search cb={goSearch} />
+        <Search />
       </div>
       <div className="main__catalog">
         {isLoading && <Loader />}
