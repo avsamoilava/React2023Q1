@@ -1,3 +1,9 @@
+.main {
+  &__catalog {
+    padding-top: 30px;
+  }
+}
+
 .catalog {
   display: flex;
   gap: 15px;

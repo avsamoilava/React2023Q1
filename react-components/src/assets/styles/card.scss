@@ -7,6 +7,17 @@
   border: 1px solid $input;
   border-radius: 10px;
   position: relative;
+  max-width: 25%;
+  @media (max-width: 1100px) {
+    max-width: 33%;
+  }
+  @media (max-width: 830px) {
+    max-width: 50%;
+  }
+  @media (max-width: 560px) {
+    max-width: 100%;
+  }
+
   cursor: pointer;
   &:hover {
     img {
