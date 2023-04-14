@@ -1,12 +1,12 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+import Helmet from 'react-helmet';
 
 export const Page404 = ({ title }: { title: string }) => {
-  useEffect(() => {
-    document.title = title;
-  }, [title]);
-
   return (
     <div className="page page-404">
+      <Helmet>
+        <title>{title}</title>
+      </Helmet>
       <h1>404</h1>
       <h2>nothing founds</h2>
       <h3>all dust and ash</h3>

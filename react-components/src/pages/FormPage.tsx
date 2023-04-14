@@ -1,18 +1,17 @@
 import { Form } from '../components/Form/Form';
-import { useEffect } from 'react';
 import { FormResultCard } from '../components/Form/FormResultCard';
 import { v4 as uuidv4 } from 'uuid';
 import { useAppSelector } from '../hooks';
+import { Helmet } from 'react-helmet';
 
 export const FormPage = ({ title }: { title: string }) => {
   const { cards } = useAppSelector((state) => state.form);
 
-  useEffect(() => {
-    document.title = title;
-  }, [title]);
-
   return (
     <div className="form-page page">
+      <Helmet>
+        <title>{title}</title>
+      </Helmet>
       <div className="_container">
         <Form />
         <div className="form-page__cards cards-gallery">
