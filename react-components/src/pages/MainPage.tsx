@@ -1,32 +1,18 @@
 import { Search } from '../components/UI/Search';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { CardList } from '../components/Card/CardList';
-import { CharsApi } from '../API/charsApi';
 import { Loader } from '../components/UI/Loader';
 import { useAppSelector } from '../hooks';
+import { useFetchAllCharsQuery } from '../services/CharService';
 
 export const MainPage = ({ title }: { title: string }) => {
-  const [chars, setChars] = useState([]);
-  const [searchStr, setSearchStr] = useState(localStorage.getItem('searchValue') || '');
-  const [isLoading, setIsLoading] = useState(true);
+  const { data, isLoading, isSuccess } = useFetchAllCharsQuery(
+    useAppSelector((state) => state.search).value
+  );
 
   useEffect(() => {
     document.title = title;
   }, [title]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      setIsLoading(true);
-      const data = await CharsApi.getAll(searchStr);
-      setChars(data.results);
-      setIsLoading(false);
-    };
-    fetchData();
-  }, [searchStr]);
-
-  const goSearch = (param: string) => {
-    setSearchStr(param);
-  };
 
   return (
     <div className="page main">
@@ -34,8 +20,13 @@ export const MainPage = ({ title }: { title: string }) => {
         <Search />
       </div>
       <div className="main__catalog">
-        {isLoading && <Loader />}
-        {chars ? <CardList chars={chars} /> : <h1>Characters not found</h1>}
+        {isSuccess ? (
+          <CardList chars={data?.results} />
+        ) : isLoading ? (
+          <Loader />
+        ) : (
+          <h1>Characters not found</h1>
+        )}
       </div>
     </div>
   );

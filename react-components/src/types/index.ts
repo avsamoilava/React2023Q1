@@ -31,3 +31,13 @@ export type Char = {
   url: string;
   created: string;
 };
+
+export type CharResponse = {
+  info: {
+    count: number;
+    pages: number;
+    next: string | null;
+    prev: string | null;
+  };
+  results: Char[];
+};

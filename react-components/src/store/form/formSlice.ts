@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { FormCard } from '../types';
+import { FormCard } from '../../types';
 
 interface FormState {
   cards: FormCard[];

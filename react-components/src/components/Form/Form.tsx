@@ -4,7 +4,7 @@ import { SubmitHandler } from 'react-hook-form/dist/types';
 import { FormCard, Fields } from '../../types';
 import { createImage } from '../../utils';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { setCards, setIsSuccess } from '../../store/formSlice';
+import { setCards, setIsSuccess } from '../../store/form/formSlice';
 
 export const Form = () => {
   const { isSuccess } = useAppSelector((state) => state.form);
