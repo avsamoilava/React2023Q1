@@ -2,61 +2,43 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router-dom';
 import App from '../App';
+import { Provider } from 'react-redux';
+import { store } from '../store';
 
 describe('Navigate test', () => {
-  it('Header contains Main-link', async () => {
+  beforeEach(() => {
     render(
-      <MemoryRouter>
-        <App />
-      </MemoryRouter>
+      <Provider store={store}>
+        <MemoryRouter>
+          <App />
+        </MemoryRouter>
+      </Provider>
     );
+  });
+
+  it('Header contains Main-link', async () => {
     expect(screen.getByText('Main')).toBeInTheDocument();
   });
 
   it('Header contains About-us-link', async () => {
-    render(
-      <MemoryRouter>
-        <App />
-      </MemoryRouter>
-    );
     expect(screen.getByText('About us')).toBeInTheDocument();
   });
 
   it('Header contains Form-link', async () => {
-    render(
-      <MemoryRouter>
-        <App />
-      </MemoryRouter>
-    );
     expect(screen.getByText('Form')).toBeInTheDocument();
   });
 
   it('Go to page "About" when clicking on link "About us"', async () => {
-    render(
-      <MemoryRouter>
-        <App />
-      </MemoryRouter>
-    );
     userEvent.click(screen.getByText('About us'));
     expect(await screen.findByText('About page')).toBeInTheDocument();
   });
 
   it('Go to page "Main" when clicking on link "Main"', async () => {
-    render(
-      <MemoryRouter>
-        <App />
-      </MemoryRouter>
-    );
     userEvent.click(screen.getByText('Main'));
     expect(await screen.findByRole('search-input')).toBeInTheDocument();
   });
 
   it('Go to page "Form" when clicking on link "Form"', async () => {
-    render(
-      <MemoryRouter>
-        <App />
-      </MemoryRouter>
-    );
     userEvent.click(screen.getByText('Form'));
     expect(await screen.findByText(/submit/i)).toBeInTheDocument();
   });
