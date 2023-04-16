@@ -1,19 +1,22 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { SubmitHandler } from 'react-hook-form/dist/types';
 import { FormCard, Fields } from '../../types';
 import { createImage } from '../../utils';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { setCards, setIsSuccess } from '../../store/form/formSlice';
 
-export const Form = ({ cb }: { cb: (card: FormCard) => void }) => {
-  const [isSuccess, setIsSuccess] = useState(false);
+export const Form = () => {
+  const { isSuccess } = useAppSelector((state) => state.form);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     if (isSuccess) {
       setTimeout(() => {
-        setIsSuccess(false);
+        dispatch(setIsSuccess(false));
       }, 2000);
     }
-  }, [isSuccess]);
+  }, [isSuccess, dispatch]);
 
   const {
     register,
@@ -26,14 +29,16 @@ export const Form = ({ cb }: { cb: (card: FormCard) => void }) => {
   });
 
   const onSubmit: SubmitHandler<Fields> = (data) => {
-    const card: FormCard = { ...data, image: createImage(data.images[0]) };
-    cb(card);
-    setIsSuccess(true);
+    const img = data.images?.[0] as File;
+    const { agreement, country, date, userName, gender } = data;
+    const card: FormCard = { agreement, country, date, userName, gender, image: createImage(img) };
+    dispatch(setCards(card));
+    dispatch(setIsSuccess(true));
     reset();
   };
 
   const handleChange = () => {
-    setIsSuccess(false);
+    dispatch(setIsSuccess(false));
   };
 
   return (
