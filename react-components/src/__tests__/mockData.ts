@@ -1,3 +1,5 @@
+import configureStore from 'redux-mock-store';
+
 export const mock = {
   info: {
     count: 826,
@@ -91,4 +93,11 @@ export const fakeChar = {
   episode: ['', ''],
   url: '',
   created: '',
+};
+
+export const mockStore = configureStore();
+export const initialState = {
+  search: { value: '' },
+  form: { cards: [], isSuccess: false },
+  charApi: {},
 };

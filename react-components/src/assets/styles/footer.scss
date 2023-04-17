@@ -11,8 +11,10 @@
   }
 
   a {
+    color: $light;
     transition: color 0.3s;
   }
+
   a:visited {
     color: $light
   }
