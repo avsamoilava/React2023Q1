@@ -13,7 +13,8 @@
   gap: 20px;
   padding: 20px;
   border-radius: 10px;
-  border: 2px solid $accent;;
+  border: 2px solid $accent;
+  background: #ffffffc2;
 
   &__radio-group, label {
     display: flex;
