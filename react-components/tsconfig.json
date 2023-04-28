@@ -17,8 +17,9 @@
     "jsx": "react-jsx",
     "noImplicitAny": true,
     "baseUrl": "./src",
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "types": ["cypress", "node"]
   },
-  "include": ["./src/**/*", "styled.d.ts", "setupTests.js"],
+  "include": ["./src/**/*", "styled.d.ts", "setupTests.js", "**/*.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

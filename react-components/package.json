@@ -10,7 +10,8 @@
     "lint": "eslint . --ext .tsx --ext .ts",
     "lint:fix": "eslint . --ext .tsx --ext .ts --fix",
     "test:coverage": "vitest --run --coverage",
-    "test": "vitest"
+    "test": "vitest",
+    "test:cypress": "cypress open"
   },
   "dependencies": {
     "@loadable/component": "^5.15.3",
@@ -44,6 +45,7 @@
     "@vitejs/plugin-react": "^3.1.0",
     "@vitest/coverage-c8": "^0.29.3",
     "concurrently": "^8.0.1",
+    "cypress": "^12.11.0",
     "eslint": "^8.14.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-import-resolver-typescript": "^2.7.1",
