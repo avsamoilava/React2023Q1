@@ -17,7 +17,7 @@ export const Card = ({ char }: { char: Char }) => {
         <div className="card__img">
           <img src={char.image} alt="char photo" />
         </div>
-        <div className="card__row">
+        <div className="card__row card__row_name">
           <span>{char.name}</span>
         </div>
       </div>
