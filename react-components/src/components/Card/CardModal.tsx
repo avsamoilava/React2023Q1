@@ -13,7 +13,7 @@ export const CardModal = ({ char, cb }: { char: Char; cb: () => void }) => {
           </div>
           <div className="card__row">
             <span>Name</span>
-            {char.name}
+            <span className="card__name">{char.name}</span>
           </div>
           <div className="card__row">
             <span>Status</span>
