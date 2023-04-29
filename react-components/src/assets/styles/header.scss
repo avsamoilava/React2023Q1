@@ -1,6 +1,5 @@
 .header {
   padding: 20px;
-  margin-bottom: 30px;
   background: $accent;
 }
 
@@ -10,6 +9,7 @@
     gap: 20px;
     justify-content: center;
     align-items: center;
+    list-style: none;
   }
   &__link {
     color: $dark;

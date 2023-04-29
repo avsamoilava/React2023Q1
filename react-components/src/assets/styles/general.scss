@@ -50,4 +50,6 @@ button:focus-visible {
 }
 .page {
   flex-grow: 1;
+  background: url('./src/assets/images/general-bg.jpg') center/cover no-repeat;
+  padding: 30px 0;
 }

@@ -6,7 +6,7 @@ import { useFetchAllCharsQuery } from '../services/CharService';
 import { Helmet } from 'react-helmet';
 
 export const MainPage = ({ title }: { title: string }) => {
-  const { data, isLoading, isSuccess } = useFetchAllCharsQuery(
+  const { data, isLoading, isSuccess, isFetching } = useFetchAllCharsQuery(
     useAppSelector((state) => state.search).value
   );
 
@@ -21,7 +21,7 @@ export const MainPage = ({ title }: { title: string }) => {
       <div className="main__catalog">
         {isSuccess ? (
           <CardList chars={data?.results} />
-        ) : isLoading ? (
+        ) : isLoading || isFetching ? (
           <Loader />
         ) : (
           <h1>Characters not found</h1>
