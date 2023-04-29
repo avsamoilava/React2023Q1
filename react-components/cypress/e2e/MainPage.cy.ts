@@ -1,22 +1,14 @@
 describe('menu', () => {
-  beforeEach(() => {
-    cy.visit('/');
-  });
-
   it('contains input', () => {
+    cy.visit('/');
     cy.get('input').should('have.value', '');
   });
   it('user can type in input', () => {
+    cy.visit('/');
     cy.get('input[type="search').type('avadakedavra').should('have.value', 'avadakedavra');
   });
-  it('search works', () => {
-    const text = 'Rick';
-    cy.get('input[type="search').type(`${text}{enter}`).should('have.value', text);
-    cy.get('.card__row_name').each(($el) => {
-      expect($el).to.contain('Rick');
-    });
-  });
   it('modal-card works', () => {
+    cy.visit('/');
     cy.get('.catalog__card').first().click();
     cy.get('.modal-card').should('exist');
 

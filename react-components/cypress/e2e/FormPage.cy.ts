@@ -1,19 +1,18 @@
 describe('menu', () => {
-  beforeEach(() => {
-    cy.visit('/form');
-  });
-
   it('contains form', () => {
+    cy.visit('/form');
     cy.get('button').should('have.text', 'Submit');
   });
 
   it('not create empty card', () => {
+    cy.visit('/form');
     cy.get('button[type=submit]').click();
     cy.get('.form-card').should('not.exist');
     cy.get('.form__error').should('have.length', 6);
   });
 
   it('not create card with invalid name', () => {
+    cy.visit('/form');
     const submit = cy.get('button[type=submit]');
     const input = cy.get('[name=userName]');
     const errorMessage =
@@ -50,6 +49,7 @@ describe('menu', () => {
   });
 
   it('create card with valid data', () => {
+    cy.visit('/form');
     cy.get('[name=userName]').type('Ivan Ivanov');
     cy.get('select[name=country]').select('belarus');
     cy.get('[name=date]').type('2010-01-12');

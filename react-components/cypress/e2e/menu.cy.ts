@@ -1,14 +1,12 @@
 describe('menu', () => {
-  beforeEach(() => {
-    cy.visit('/');
-  });
-
   it('contains menu', () => {
+    cy.visit('/');
     cy.get('.header-nav__list li').should('have.length', 3);
     cy.get('.header-nav__list li a').first().should('have.text', 'Main');
     cy.get('.header-nav__list li a').last().should('have.text', 'Form');
   });
   it('should switch pages', () => {
+    cy.visit('/');
     cy.contains('About us').click();
     cy.get('h1').should('have.text', 'About page');
     cy.url().should('include', '/about');
